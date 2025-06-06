@@ -1,7 +1,7 @@
 // ===== app/results/page.tsx =====
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Product } from "../types/product";
 import ProductCard from "../components/ProductCard";
