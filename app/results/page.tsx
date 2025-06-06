@@ -1,31 +1,32 @@
-// pages/results.tsx
-import { useRouter } from "next/router";
+// ===== app/results/page.tsx =====
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Product } from "../types/product";
 import ProductCard from "../components/ProductCard";
 
 export default function ResultsPage() {
-  const router = useRouter();
-  const { q } = router.query;
+  const searchParams = useSearchParams();
+  const q = searchParams.get("q") || "";
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!q) return;
-
+    
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/search?q=${q}`);
+        const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
         const data = await res.json();
         setProducts(data.products || []);
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching: ", err);
       } finally {
         setLoading(false);
       }
     };
-
     fetchProducts();
   }, [q]);
 
