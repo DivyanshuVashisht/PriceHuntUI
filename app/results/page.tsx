@@ -1,8 +1,9 @@
 // ===== app/results/page.tsx =====
 "use client";
 
+
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Product } from "../types/product";
 import ProductCard from "../components/ProductCard";
 
@@ -11,12 +12,19 @@ export default function ResultsPage() {
   const q = searchParams.get("q") || "";
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!q) return;
+    if (!q) {
+      setProducts([]);
+      setLoading(false);
+      setError(null);
+      return;
+    }
 
     const fetchProducts = async () => {
       setLoading(true);
+      setError(null);
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
         const data = await res.json();
