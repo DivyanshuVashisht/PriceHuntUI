@@ -14,7 +14,7 @@ export default function ResultsPage() {
 
   useEffect(() => {
     if (!q) return;
-    
+
     const fetchProducts = async () => {
       setLoading(true);
       try {
@@ -22,11 +22,12 @@ export default function ResultsPage() {
         const data = await res.json();
         setProducts(data.products || []);
       } catch (err) {
-        console.error("Error fetching: ", err);
+        console.error("Error fetching:", err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchProducts();
   }, [q]);
 
