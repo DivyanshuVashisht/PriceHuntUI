@@ -1,33 +1,35 @@
-import { useRouter } from "next/router"
+// pages/results.tsx
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Product } from "./types/product";
 import ProductCard from "./components/ProductCard";
 
 export default function ResultsPage() {
-    const router = useRouter();
-    const { q } = router.query;
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const { q } = router.query;
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (!q) return;
+  useEffect(() => {
+    if (!q) return;
 
-        const fetchProducts = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch(`/api/search?q=${q}`);
-                const data = await res.json();
-                setProducts(data.products || []);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProducts();
-    }, [q]);
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`/api/search?q=${q}`);
+        const data = await res.json();
+        setProducts(data.products || []);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return (
+    fetchProducts();
+  }, [q]);
+
+  return (
     <main className="p-6">
       <h1 className="text-3xl font-bold mb-4">Results for “{q}”</h1>
       {loading ? (
