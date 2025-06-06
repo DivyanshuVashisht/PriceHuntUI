@@ -1,9 +1,10 @@
 // ===== app/results/page.tsx =====
 "use client";
 
+export const dynamic = "force-dynamic";
 
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "../types/product";
 import ProductCard from "../components/ProductCard";
 
