@@ -14,7 +14,8 @@ export async function GET(request: Request) {
     const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/search?q=${encodeURIComponent(query)}`;
     const res = await fetch(apiUrl);
     const data = await res.json();
-    return NextResponse.json({products: data });
+    // console.log("API data: ", data);
+    return NextResponse.json({ products: data });
   } catch (err) {
     console.error("API fetch error: ", err);
     return NextResponse.json({ error: "Failed to fetch from backend"}, { status : 500 });

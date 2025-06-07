@@ -84,7 +84,7 @@ export default function ResultsPage() {
         on the server during build/prerendering, and then render SearchResultsContent
         on the client once useSearchParams is available.
       */}
-      <Suspense fallback={<div>Loading search parameters...</div>}>
+      <Suspense fallback={<div>Loading ...</div>}>
         {/*
           We're moving the h1 inside SearchResultsContent to ensure 'q' is available
           when it renders, or you could keep it here if you only want to display "Results"
