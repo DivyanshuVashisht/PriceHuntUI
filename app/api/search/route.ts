@@ -1,11 +1,22 @@
 // ===== app/api/search/route.ts =====
 import { NextResponse } from "next/server";
-import { sampleData } from "../../utils/sampleData";
+
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("q")?.toLowerCase() || "";
-  const filtered = sampleData.filter((item) => 
-  item.title.toLowerCase().includes(query));
-  return NextResponse.json({ products: filtered });
+
+  if (!query) {
+    return NextResponse.json({ products: [] }, { status: 400});
+  }
+
+  try {
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/search?q=${encodeURIComponent(query)}`;
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+    return NextResponse.json({products: data });
+  } catch (err) {
+    console.error("API fetch error: ", err);
+    return NextResponse.json({ error: "Failed to fetch from backend"}, { status : 500 });
+  }
 }

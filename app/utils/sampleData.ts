@@ -1,3 +1,4 @@
+// ===== app/utils/SampleData.tsx =====
 import { Product } from "../types/product";
 
 export const sampleData: Product[] = [
