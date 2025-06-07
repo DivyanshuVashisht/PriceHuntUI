@@ -62,7 +62,7 @@ git clone https://github.com/yourusername/PriceHuntUI.git
 cd PriceHuntUI
 npm install
 npm run dev
-
+```
 ---
 
 ## 🧭 Project Status
