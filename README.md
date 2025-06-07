@@ -62,3 +62,26 @@ git clone https://github.com/yourusername/PriceHuntUI.git
 cd PriceHuntUI
 npm install
 npm run dev
+
+---
+
+## 🧭 Project Status
+
+✅ **Live & functional at:** [https://price-hunt-three.vercel.app/](https://price-hunt-three.vercel.app/)  
+🛠️ **Planned expansions** include:
+- Integration with **Croma**, **Hero**, **Blinkit**, **Swiggy Instamart**
+- Enhanced UI/UX and error handling
+- More smart filtering options
+
+---
+
+## 👤 Author
+
+This is a solo project crafted with 💻 and ☕ by an individual developer passionate about simplifying online shopping.
+
+---
+
+## ⭐ Like this project?
+
+If you found this useful, please consider giving it a ⭐ on GitHub or sharing it with others who might benefit!
+
