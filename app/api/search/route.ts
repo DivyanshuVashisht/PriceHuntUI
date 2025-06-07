@@ -11,10 +11,12 @@ export async function GET(request: Request) {
   }
 
   try {
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/search?q=${encodeURIComponent(query)}`;
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/scrape?q=${encodeURIComponent(query)}`;
+    console.log("API url: ", apiUrl);
     const res = await fetch(apiUrl);
+    console.log(res);
     const data = await res.json();
-    // console.log("API data: ", data);
+    console.log("API data: ", data);
     return NextResponse.json({ products: data });
   } catch (err) {
     console.error("API fetch error: ", err);

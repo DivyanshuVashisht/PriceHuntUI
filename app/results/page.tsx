@@ -33,7 +33,7 @@ function SearchResultsContent() {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         const data = await res.json();
-        // Assuming your API returns an object with a 'products' array
+        
         setProducts(data.products || []);
       } catch (err: any) { // Catch potential network or parsing errors
         console.error("Error fetching products:", err);
